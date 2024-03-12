@@ -26,7 +26,7 @@ jobs:
             source ~/.bash_profile
             which composer
             composer --version
-            cd ${{ secrects.SERVER_PATH }}/portfolio_test/
+            cd ${{ secrets.SERVER_PATH }}/portfolio_test/
             git stash
             git pull origin develop
             composer update
