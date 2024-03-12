@@ -1,4 +1,4 @@
-name: Deploy Laravel to Hpanel
+name: First Update Staging Laravel to Hpanel
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    name: Deploy to Hpanel
+    name: First Update Staging to Hpanel
 
     steps:
       - name: Checkout code
@@ -21,19 +21,18 @@ jobs:
           key: ${{ secrets.SERVER_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            cd ${{ secrets.SERVER_PATH }}
-            git config --global user.email "ahmakbar.dev@gmail.com"
-            git config --global user.name "ahmakbardev"
-            git clone https://github.com/ahmakbardev/portfolio_test.git
             chmod +x ~/bin/composer
             echo "export PATH=$HOME/bin:$PATH" >> ~/.bash_profile
             source ~/.bash_profile
             which composer
             composer --version
             cd ${{ secrets.SERVER_PATH }}/portfolio_test/
-            cp .env.example .env
+            git config --global  pull.ff true
+            git stash
             git pull origin develop
-            composer install
             composer update
-            php artisan key:generate
-            ln -s ${{ secrets .SERVER_PATH }}/portfolio_test/public ${{ secrets.SERVER_PATH }}/public_html/staging
+            php artisan queue:restart
+            php artisan cache:clear
+            php artisan route:clear
+            php artisan config:clear
+            php artisan view:clear
