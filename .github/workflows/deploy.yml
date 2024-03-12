@@ -35,4 +35,4 @@ jobs:
             git pull origin develop
             composer install
             php artisan key:generate
-            ln -s ${{ secrets .SERVER_PATH }}/portfolio_test/public ${{ secrets.SERVER_PATH }}/public_html/staging
+            ln -s ${{ secrets .SERVER_PATH }}/public ${{ secrets.SERVER_PATH }}/public_html/staging
