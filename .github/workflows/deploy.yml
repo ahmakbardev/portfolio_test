@@ -21,7 +21,7 @@ jobs:
           key: ${{ secrets.SERVER_KEY }}
           port: ${{ secrets.SERVER_PORT }}
           script: |
-            cd ${{ secrets  .SERVER_PATH }}
+            cd ${{ secrets.SERVER_PATH }}
             git config --global user.email "ahmakbar.dev@gmail.com"
             git config --global user.name "ahmakbardev"
             git clone https://github.com/ahmakbardev/portfolio_test.git
@@ -30,9 +30,9 @@ jobs:
             source ~/.bash_profile
             which composer
             composer --version
-            cd ${{ secrets  .SERVER_PATH }}/portfolio_test/
+            cd ${{ secrets.SERVER_PATH }}/portfolio_test/
             cp .env.example .env
             git pull origin develop
             composer install
             php artisan key:generate
-            ln -s ${{ secrets .SERVER_PATH }}/portfolio_test/public ${{ secrets  .SERVER_PATH }}/public_html/staging
+            ln -s ${{ secrets .SERVER_PATH }}/portfolio_test/public ${{ secrets.SERVER_PATH }}/public_html/staging
