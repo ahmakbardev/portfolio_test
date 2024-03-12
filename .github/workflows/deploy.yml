@@ -35,7 +35,7 @@ jobs:
             php artisan route:clear
             php artisan config:clear
             php artisan view:clear
-            source ~/.bash_profile
-            nvm use 18
-            npm i vite
-            npm run dev
+        # source ~/.bash_profile
+        # nvm use 18
+        # npm i vite
+        # npm run dev
